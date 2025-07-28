@@ -2,8 +2,10 @@ FROM n8nio/n8n:latest
 
 USER root
 
-COPY package*.json ./
-RUN npm install --production
+# Permite módulos externos
+ENV N8N_ENABLE_EXTERNAL_MODULES=true
+
+# Instala o pacote do Reportei globalmente
+RUN npm install -g @reportei/n8n-nodes-reportei
 
 USER node
-
